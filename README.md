@@ -2,7 +2,8 @@
 
 ## Description
 
-This project is a Quarkus-based API that fetches information about a user's public GitHub repositories, excluding forks. The API returns details about repositories, their owner, and a list of branches with the latest commit SHA.
+This project is a Quarkus-based API that fetches information about a user's public GitHub repositories, excluding forks. 
+The API returns details about repositories, their owner, and a list of branches with the latest commit SHA.
 
 ## Technologies
 
@@ -28,7 +29,7 @@ This project is a Quarkus-based API that fetches information about a user's publ
 
 ### Error Handling
 
-- `CustomError` - Model for storing error information (status and message).
+- `CustomError` - Custom model for storing error information (status and message).
 
 ### Service
 
@@ -43,11 +44,11 @@ This project is a Quarkus-based API that fetches information about a user's publ
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo.git
+   git clone https://github.com/Calzaghe/github_repo_info
    ```
 2. Navigate to the project directory:
    ```sh
-   cd your-repo
+   cd github_repo_info
    ```
 3. Start the Quarkus application:
    ```sh
@@ -59,7 +60,9 @@ This project is a Quarkus-based API that fetches information about a user's publ
 Add the following configuration in `application.properties`:
 
 ```
-quarkus.rest-client.github-api.url=https://api.github.com
+github-api/mp-rest/url=https://api.github.com
+github-api/mp-rest/connectTimeout= !!SET CUSTOM TIMEOUT VALUE HERE!!
+github-api/mp-rest/readTimeout= !!SET CUSTOM TIMEOUT VALUE HERE!!
 ```
 
 ## Usage Examples
@@ -71,7 +74,7 @@ quarkus.rest-client.github-api.url=https://api.github.com
 GET /github/repos/{username}
 ```
 
-**Example Response:**
+**Example happy response:**
 ```json
 [
   {
@@ -87,7 +90,15 @@ GET /github/repos/{username}
 ]
 ```
 
+**Example error response:**
+```json
+{
+    "status": 404,
+    "message": "No public repositories found for user ${username}"
+}
+```
+
 ## Author
-Created by: [Your Name]  
-📧 Email: [Your Email]
+Created by: PBania 
+
 
